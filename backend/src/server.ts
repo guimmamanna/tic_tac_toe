@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import { registerGameHandlers } from './socket/gameHandler'
 import { registerChatHandlers } from './socket/chatHandler'
 import authRoutes from './routes/auth'
+import aiRoutes from './routes/ai'
 
 // Load environment variables
 dotenv.config()
@@ -49,6 +50,9 @@ app.get('/api/stats', (req, res) => {
 
 // Auth routes
 app.use('/api/auth', authRoutes)
+
+// AI routes
+app.use('/api/ai', aiRoutes)
 
 // Socket.io connection handling
 io.on('connection', (socket) => {
