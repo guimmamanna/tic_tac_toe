@@ -70,7 +70,7 @@ export function GameHeader({
               className="mt-2 text-xs text-cyberpunk-secondary flex items-center gap-1"
             >
               <Zap className="w-3 h-3" />
-              Opponent's turn
+              Opponent&apos;s turn
             </motion.div>
           )}
         </motion.div>

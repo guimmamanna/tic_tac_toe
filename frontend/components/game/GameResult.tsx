@@ -35,7 +35,7 @@ export function GameResult({ winner, onRestart, onHome }: GameResultProps) {
               <XIcon className="w-12 h-12 text-gray-300" />
             </motion.div>
 
-            <h2 className="text-4xl font-bold mb-2">It's a Draw!</h2>
+            <h2 className="text-4xl font-bold mb-2">It&apos;s a Draw!</h2>
             <p className="text-gray-400 mb-8">Well played by both sides</p>
           </>
         ) : (
