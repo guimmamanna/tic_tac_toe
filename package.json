@@ -14,10 +14,6 @@
     "prisma:generate": "cd backend && npm run prisma:generate",
     "prisma:studio": "cd backend && npm run prisma:studio"
   },
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
   "devDependencies": {
     "concurrently": "^8.2.2"
   },
