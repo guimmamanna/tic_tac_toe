@@ -1,0 +1,5 @@
+PORT=3001
+NODE_ENV=production
+CORS_ORIGINS=https://frontend-pi-two-68.vercel.app,https://frontend-r1lwum9av-christian-manna-guimmas-projects.vercel.app
+JWT_SECRET=epic-tictactoe-jwt-secret-2024-production-secure-key
+SESSION_SECRET=epic-tictactoe-session-secret-2024-production
