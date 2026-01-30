@@ -72,7 +72,7 @@ model UserStats {
   totalPlayTime     Int      @default(0) // in seconds
   classicModeWins   Int      @default(0)
   speedModeWins     Int      @default(0)
-  ultimateMode      Wins   Int      @default(0)
+  ultimateModeWins  Int      @default(0)
   powerUpModeWins   Int      @default(0)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
