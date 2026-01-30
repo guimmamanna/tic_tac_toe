@@ -1,5 +1,9 @@
 # Vercel ignore file
 
+# Root monorepo files (we only want frontend)
+/package.json
+/package-lock.json
+
 # Don't deploy backend
 backend/
 
