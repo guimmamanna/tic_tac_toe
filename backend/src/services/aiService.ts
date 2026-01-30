@@ -3,7 +3,7 @@
  * Migrated from Python Streamlit version with minimax algorithm
  */
 
-import type { Board, CellValue, Player } from '../../../shared/types/game'
+import type { Board, CellValue, Player } from '../../shared/types/game'
 
 const WIN_LINES = [
   [0, 1, 2], // Rows

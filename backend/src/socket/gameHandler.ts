@@ -5,7 +5,7 @@
 import { Server, Socket } from 'socket.io'
 import { gameService } from '../services/gameService'
 import { aiService } from '../services/aiService'
-import type { Board, Player, GameMode } from '../../../shared/types/game'
+import type { Board, Player, GameMode } from '../../shared/types/game'
 
 interface GameRoom {
   id: string

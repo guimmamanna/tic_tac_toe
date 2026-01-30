@@ -2,7 +2,7 @@
  * Game Service - Core game logic and state management
  */
 
-import type { Board, CellValue, GameResult, Player } from '../../../shared/types/game'
+import type { Board, CellValue, GameResult, Player } from '../../shared/types/game'
 
 const WIN_LINES = [
   [0, 1, 2],

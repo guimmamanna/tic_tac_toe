@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
 import { aiService } from '../services/aiService'
-import type { Board, Player } from '../../../shared/types/game'
+import type { Board, Player } from '../../shared/types/game'
 
 const router = Router()
 
