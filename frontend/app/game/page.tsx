@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { Suspense, useEffect, useState, useCallback } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import confetti from 'canvas-confetti'
@@ -14,7 +14,7 @@ import type { Board, Player, GameState } from '../../../shared/types/game'
 import { Home, Copy, Check } from 'lucide-react'
 import toast from 'react-hot-toast'
 
-export default function GamePage() {
+function GameContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const mode = searchParams.get('mode') || 'ai'
@@ -383,5 +383,20 @@ export default function GamePage() {
         </motion.div>
       )}
     </div>
+  )
+}
+
+export default function GamePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-cyberpunk-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading game...</p>
+        </div>
+      </div>
+    }>
+      <GameContent />
+    </Suspense>
   )
 }
