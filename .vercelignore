@@ -1,0 +1,23 @@
+# Vercel ignore file
+
+# Don't deploy backend
+backend/
+
+# Python files (old Streamlit version)
+*.py
+__pycache__/
+.venv/
+venv/
+
+# Development files
+.env
+.env.local
+.DS_Store
+
+# Documentation
+*.md
+!README.md
+
+# Git
+.git/
+.gitignore

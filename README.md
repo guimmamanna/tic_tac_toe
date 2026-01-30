@@ -168,27 +168,7 @@ Choose from 8 beautiful themes:
 
 Click the theme button in the nav to switch!
 
-## 🚀 Deployment
 
-Ready to deploy to production! See [DEPLOYMENT.md](DEPLOYMENT.md) for complete guide.
-
-### Quick Deploy to Vercel
-
-1. Push to GitHub
-2. Import to Vercel
-3. Set environment variables
-4. Deploy!
-
-Frontend deploys automatically. Backend can be deployed to Render/Railway/Heroku.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
 
 ## 📄 License
 
