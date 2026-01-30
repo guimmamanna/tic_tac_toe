@@ -124,53 +124,82 @@ export default function GamePage() {
     return { winner: null, line: [] }
   }
 
-  const makeAIMove = useCallback((currentBoard: Board) => {
-    // Simple AI for demo - can be enhanced
-    const availableMoves = currentBoard
-      .map((cell, index) => cell === '' ? index : -1)
-      .filter(index => index !== -1)
+  const makeAIMove = useCallback(async (currentBoard: Board) => {
+    try {
+      // Call backend AI service
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      const response = await fetch(`${apiUrl}/api/ai/move`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          board: currentBoard,
+          difficulty: aiDifficulty,
+          aiPlayer: 'O',
+          humanPlayer: 'X'
+        })
+      })
 
-    if (availableMoves.length === 0) return
+      if (!response.ok) {
+        throw new Error('AI service unavailable')
+      }
 
-    // Random move weighted by position
-    const weights = availableMoves.map(pos => {
-      if (pos === 4) return 3 // center
-      if ([0, 2, 6, 8].includes(pos)) return 2 // corners
-      return 1 // edges
-    })
+      const { move: selectedMove } = await response.json()
 
-    const totalWeight = weights.reduce((sum, w) => sum + w, 0)
-    let random = Math.random() * totalWeight
+      setTimeout(() => {
+        const newBoard = [...currentBoard]
+        newBoard[selectedMove] = 'O'
+        setBoard(newBoard as Board)
+        playSound('move', 0.3)
 
-    let selectedMove = availableMoves[0]
-    for (let i = 0; i < availableMoves.length; i++) {
-      random -= weights[i]
-      if (random <= 0) {
-        selectedMove = availableMoves[i]
-        break
+        const result = checkWinner(newBoard as Board)
+        if (result.winner) {
+          setWinner(result.winner)
+          setWinningLine(result.line)
+          setGameStatus('finished')
+          if (result.winner !== 'draw') {
+            celebrateWin()
+            playSound('win', 0.5)
+          }
+        } else {
+          setCurrentPlayer('X')
+        }
+      }, 500)
+    } catch (error) {
+      console.error('AI move error:', error)
+      toast.error('AI service unavailable - using fallback AI')
+
+      // Fallback to simple AI if backend is unavailable
+      const availableMoves = currentBoard
+        .map((cell, index) => cell === '' ? index : -1)
+        .filter(index => index !== -1)
+
+      if (availableMoves.length > 0) {
+        const selectedMove = availableMoves[Math.floor(Math.random() * availableMoves.length)]
+
+        setTimeout(() => {
+          const newBoard = [...currentBoard]
+          newBoard[selectedMove] = 'O'
+          setBoard(newBoard as Board)
+          playSound('move', 0.3)
+
+          const result = checkWinner(newBoard as Board)
+          if (result.winner) {
+            setWinner(result.winner)
+            setWinningLine(result.line)
+            setGameStatus('finished')
+            if (result.winner !== 'draw') {
+              celebrateWin()
+              playSound('win', 0.5)
+            }
+          } else {
+            setCurrentPlayer('X')
+          }
+        }, 500)
       }
     }
-
-    setTimeout(() => {
-      const newBoard = [...currentBoard]
-      newBoard[selectedMove] = 'O'
-      setBoard(newBoard as Board)
-      playSound('move', 0.3)
-
-      const result = checkWinner(newBoard as Board)
-      if (result.winner) {
-        setWinner(result.winner)
-        setWinningLine(result.line)
-        setGameStatus('finished')
-        if (result.winner !== 'draw') {
-          celebrateWin()
-          playSound('win', 0.5)
-        }
-      } else {
-        setCurrentPlayer('X')
-      }
-    }, 500)
-  }, [])
+  }, [aiDifficulty])
 
   const handleCellClick = (index: number) => {
     if (gameStatus !== 'playing' || board[index] !== '' || currentPlayer !== 'X') {
