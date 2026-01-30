@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Trophy, Home, RotateCcw, X as XIcon } from 'lucide-react'
-import type { Player } from '../../../shared/types/game'
+import type { Player } from '../../shared/types/game'
 
 interface GameResultProps {
   winner: Player | 'draw'

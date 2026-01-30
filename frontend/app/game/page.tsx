@@ -10,7 +10,7 @@ import { GameResult } from '@/components/game/GameResult'
 import { ChatBox } from '@/components/game/ChatBox'
 import { initSocket, getSocket } from '@/lib/socket'
 import { playSound } from '@/lib/utils'
-import type { Board, Player, GameState } from '../../../shared/types/game'
+import type { Board, Player, GameState } from '../../shared/types/game'
 import { Home, Copy, Check } from 'lucide-react'
 import toast from 'react-hot-toast'
 

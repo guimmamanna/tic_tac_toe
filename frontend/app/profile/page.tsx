@@ -7,7 +7,7 @@ import {
   Home, User, Trophy, Star, Zap, Award,
   TrendingUp, Calendar, Clock, Target
 } from 'lucide-react'
-import { ACHIEVEMENTS } from '../../../shared/types/user'
+import { ACHIEVEMENTS } from '../../shared/types/user'
 
 export default function ProfilePage() {
   const router = useRouter()
