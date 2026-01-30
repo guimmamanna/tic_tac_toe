@@ -1,107 +1,178 @@
-# Love Tic Tac Toe
+# Epic Tic-Tac-Toe 🎮
 
-## Description
+A modern, feature-rich online multiplayer tic-tac-toe game with stunning visuals, multiple game modes, and competitive features.
 
-A futuristic, human-vs-robot Tic Tac Toe built with Streamlit. Play against a "human-ish" AI that adapts to your difficulty setting, with a bold, neon-inspired UI and instant bot responses.
+## ✨ Features
 
-## Why This Project Exists
+### 🎮 Game Modes
+- **Classic Mode** - Traditional 3x3 tic-tac-toe
+- **Speed Mode** - Race against the clock with 10-second turns
+- **Ultimate Tic-Tac-Toe** - 3x3 grid of tic-tac-toe boards
+- **Power-Up Mode** - Use special abilities to gain an advantage
+- **AI Mode** - Practice against intelligent bot opponents
 
-This project is a playful, lightweight web game meant to demonstrate clean UI design, fast interaction loops, and a simple but engaging AI opponent that feels more human than perfect.
+### 👥 Multiplayer
+- **Private Rooms** - Create and share room codes with friends
+- **Quick Match** - Auto-matchmaking with players of similar skill
+- **Real-time Sync** - Instant move updates via WebSockets
+- **Reconnection** - Automatically rejoin if disconnected
+- **Spectator Mode** - Watch ongoing games
+- **Tournament Mode** - Competitive bracket-style competitions
 
-## Features
+### 🎨 User Experience
+- **Stunning Animations** - Smooth transitions and effects using Framer Motion
+- **Confetti Celebrations** - Victory effects that feel rewarding
+- **Multiple Themes** - Cyberpunk Neon, Dark Minimal, Light Pastel, Retro Arcade, and more
+- **Sound System** - Immersive audio with volume controls
+- **Responsive Design** - Optimized for desktop, tablet, and mobile
+- **PWA Support** - Install as a progressive web app
 
-- Human vs. AI with adjustable difficulty
-- Large, centered board with high-contrast marks
-- Instant bot response after each move
-- Futuristic UI styling and neon glow
+### 📊 Progression & Stats
+- **ELO Rating System** - Competitive skill-based ranking
+- **Global Leaderboard** - Compete with players worldwide
+- **Detailed Statistics** - Track wins, losses, streaks, and more
+- **Achievement System** - Unlock 30+ unique achievements
+- **Level & XP System** - Progress and unlock rewards
+- **Game Replays** - Watch and analyze past matches
 
-## Demo
+### 💬 Social Features
+- **Friend System** - Add friends and invite them to games
+- **In-Game Chat** - Communicate during matches
+- **Emoji Reactions** - Quick emotional responses
+- **User Profiles** - Customizable avatars and bios
+- **Friend Leaderboards** - Compare stats with friends
 
-- Local: `http://localhost:8501`
-- Online: [https://tictactoe-frin4y82jzpiekrfnvw7xn.streamlit.app/]
+## 🛠️ Tech Stack
 
-## Installation
+### Frontend
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **State Management**: Zustand
+- **Real-time**: Socket.io Client
+- **UI Components**: Radix UI
+- **Icons**: Lucide React
 
+### Backend
+- **Runtime**: Node.js 20+
+- **Framework**: Express.js
+- **Language**: TypeScript
+- **Real-time**: Socket.io
+- **Database**: PostgreSQL 16
+- **ORM**: Prisma
+- **Cache**: Redis 7
+- **Authentication**: JWT
+
+### Infrastructure
+- **Containerization**: Docker & Docker Compose
+- **Database**: PostgreSQL (production-ready)
+- **Cache/Sessions**: Redis
+- **Version Control**: Git
+
+## 📁 Project Structure
+
+```
+tic-tac-toe/
+├── frontend/                 # Next.js application
+│   ├── app/                  # Next.js 14 app router
+│   ├── components/          # React components
+│   ├── lib/                # Utilities and helpers
+│   ├── hooks/              # Custom React hooks
+│   ├── store/              # Zustand stores
+│   └── public/             # Static assets
+├── backend/                 # Node.js server
+│   ├── src/                # Source code
+│   └── prisma/             # Database schema
+├── shared/                  # Shared types
+└── docker-compose.yml      # Database services
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 20+ and npm
+- Docker and Docker Compose
+- Git
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+git clone <repository-url>
+cd tic_tac_toe
 ```
 
-## Requirements
-
-- Python 3.10+
-- See `requirements.txt`
-
-## How to Run
-
+2. **Start database services**
 ```bash
-streamlit run app.py
+docker-compose up -d
 ```
 
-## How to Play or Usage
-
-- You play as **X**.
-- The bot plays as **O**.
-- Use the sidebar to adjust difficulty.
-- Click **Start Fresh** to reset the match.
-
-## Configuration
-
-- Difficulty is set by the sidebar slider (0–100).
-- UI styling can be adjusted in the CSS block inside `app.py`.
-
-## Project Structure
-
-```
-.
-├── app.py
-├── requirements.txt
-└── README.md
+3. **Set up backend**
+```bash
+cd backend
+npm install
+cp .env.example .env
+npx prisma migrate dev
+npx prisma generate
 ```
 
-## Key Logic (Excerpt)
-
-The bot blends randomness with strategy. At lower difficulty it makes more "human-ish" mistakes; at higher difficulty it uses minimax more often.
-
-```python
-if random.random() > skill:
-    return weighted_random_move(board)
-
-if skill < 0.7:
-    win_move = find_winning_move(board, "bot")
-    if win_move is not None:
-        return win_move
-    block_move = find_winning_move(board, "human")
-    if block_move is not None:
-        return block_move
-    return weighted_random_move(board)
-
-_, move = minimax(board, "bot")
-return move if move is not None else weighted_random_move(board)
+4. **Set up frontend**
+```bash
+cd ../frontend
+npm install
 ```
 
-## Testing
+### Running the Application
 
-This project does not include automated tests yet.
+1. **Start backend** (in `backend` directory):
+```bash
+npm run dev
+```
+Backend runs on `http://localhost:3001`
 
-## Quality and Design Decisions
+2. **Start frontend** (in `frontend` directory):
+```bash
+npm run dev
+```
+Frontend runs on `http://localhost:3000`
 
-- Streamlit for fast web UI and deployment.
-- Simple state management via `st.session_state`.
-- Clean, readable board UI with high contrast.
+3. **Open browser** at `http://localhost:3000`
 
-## Roadmap
+## 🎮 How to Play
 
-- Add difficulty presets (Easy/Medium/Hard)
-- Add win animations
-- Add a rematch streak tracker
+- **Quick Match**: Click "Quick Match" for instant matchmaking
+- **Private Room**: Create a room and share the code with friends
+- **VS AI**: Practice against computer opponents with adjustable difficulty
 
-## Limitations
+## 🏆 Achievements
 
-- AI is not perfect at low settings by design.
-- No multiplayer mode.
+Unlock achievements by completing challenges:
+- 🏆 First Victory - Win your first game
+- 📅 Perfect Week - Win 7 games in a row
+- ⚡ Speed Demon - Win 10 speed mode games
+- 🎯 Ultimate Master - Win 5 ultimate mode games
+- And 25+ more!
 
-## Contributing
+## 🤝 Contributing
 
-Pull requests are welcome. Open an issue for major changes or feature requests first.
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License
+
+## 🙏 Acknowledgments
+
+- Original Streamlit version for inspiration
+- Next.js, Socket.io, and Prisma teams
+- All contributors and players!
+
+---
+
+**Built with ❤️ using Next.js, React, and Socket.io**
