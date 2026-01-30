@@ -154,6 +154,33 @@ Unlock achievements by completing challenges:
 - 🎯 Ultimate Master - Win 5 ultimate mode games
 - And 25+ more!
 
+## 🎨 Themes
+
+Choose from 8 beautiful themes:
+- **Cyberpunk Neon** - Futuristic with neon accents (default)
+- **Dark Minimal** - Clean and professional
+- **Light Pastel** - Soft and friendly
+- **Retro Arcade** - Nostalgic gaming vibes
+- **Nature** - Calm and earthy
+- **Ocean Blue** - Deep sea vibes
+- **Sunset** - Warm and vibrant
+- **Matrix** - Classic hacker aesthetic
+
+Click the theme button in the nav to switch!
+
+## 🚀 Deployment
+
+Ready to deploy to production! See [DEPLOYMENT.md](DEPLOYMENT.md) for complete guide.
+
+### Quick Deploy to Vercel
+
+1. Push to GitHub
+2. Import to Vercel
+3. Set environment variables
+4. Deploy!
+
+Frontend deploys automatically. Backend can be deployed to Render/Railway/Heroku.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please:

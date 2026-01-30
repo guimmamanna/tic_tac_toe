@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import { registerGameHandlers } from './socket/gameHandler'
 import { registerChatHandlers } from './socket/chatHandler'
+import authRoutes from './routes/auth'
 
 // Load environment variables
 dotenv.config()
@@ -14,14 +15,14 @@ const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000'],
+    origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000', 'https://*.vercel.app'],
     credentials: true,
   },
 })
 
 // Middleware
 app.use(cors({
-  origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000'],
+  origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000', 'https://*.vercel.app'],
   credentials: true,
 }))
 app.use(express.json())
@@ -45,6 +46,9 @@ app.get('/api/stats', (req, res) => {
     topEloRating: 2150
   })
 })
+
+// Auth routes
+app.use('/api/auth', authRoutes)
 
 // Socket.io connection handling
 io.on('connection', (socket) => {
