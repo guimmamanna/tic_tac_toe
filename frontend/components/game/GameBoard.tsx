@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { X, Circle } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { Board, Player } from '../../../../shared/types/game'
+import type { Board, Player } from '../../../shared/types/game'
 
 interface GameBoardProps {
   board: Board
